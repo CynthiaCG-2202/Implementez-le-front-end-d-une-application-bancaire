@@ -1,7 +1,7 @@
 import React from "react";
 
-function Login() {
+function SignIn() {
   return <h1>Page de connexion</h1>;
 }
 
-export default Login;
+export default SignIn;
