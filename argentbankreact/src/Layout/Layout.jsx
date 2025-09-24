@@ -6,7 +6,7 @@ function Layout() {
   return (
     <div className="app">
       <Header />
-      <main className="main bg-dark">
+      <main className="main">
         <Outlet />
       </main>
       <Footer />
