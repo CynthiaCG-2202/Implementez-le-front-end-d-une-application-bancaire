@@ -4,15 +4,15 @@ import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
-    <>
+    <div className="app">
       <Header />
-      <main className="main">
-        {/* Les pages viendront s’afficher ici */}
+      <main className="main bg-dark">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
+
 
 export default Layout;

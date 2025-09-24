@@ -1,7 +1,13 @@
-import React from "react";
+import SignInForm from "../Components/SignInForm";
 
 function SignIn() {
-  return <h1>Page de connexion</h1>;
+  return (
+      <section className="sign-in-content">
+        <i className="fa fa-user-circle sign-in-icon"></i>
+        <h1>Sign In</h1>
+        <SignInForm />
+      </section>
+  );
 }
 
 export default SignIn;
