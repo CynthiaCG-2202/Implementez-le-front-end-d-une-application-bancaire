@@ -1,30 +1,63 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignInForm() {
-  const [username, setUsername] = useState("");
+  // États pour le formulaire
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // Hook pour la navigation
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage(""); // Reset du message d'erreur
 
-    // Pour tester : affichage dans la console
-    console.log("Username:", username);
-    console.log("Password:", password);
-    console.log("Remember me:", rememberMe);
+    try {
+      const response = await fetch("http://localhost:3001/api/v1/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    // Ici tu pourras brancher un appel API plus tard (ex: axios ou fetch)
+      if (!response.ok) {
+        // Gestion des erreurs spécifiques
+        if (response.status === 401) throw new Error("Identifiants incorrects");
+        if (response.status === 404) throw new Error("Endpoint introuvable, vérifie l'URL de l'API");
+        throw new Error("Erreur réseau : " + response.status);
+      }
+
+      const data = await response.json();
+      console.log("Réponse API :", data);
+
+      // Stockage du token selon le choix "remember me"
+      if (rememberMe) {
+        localStorage.setItem("token", data.token);
+      } else {
+        sessionStorage.setItem("token", data.token);
+      }
+
+      // Redirection vers la page Transactions
+      navigate("/transactions");
+    } catch (error) {
+      console.error("Erreur API :", error);
+      setErrorMessage(error.message); // Affiche le message d'erreur
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-wrapper">
-        <label htmlFor="username">Username</label>
+        <label htmlFor="email">Email</label>
         <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </div>
 
@@ -35,6 +68,7 @@ function SignInForm() {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </div>
 
@@ -51,6 +85,9 @@ function SignInForm() {
       <button type="submit" className="sign-in-button">
         Sign In
       </button>
+
+      {/* Affichage des erreurs */}
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </form>
   );
 }
