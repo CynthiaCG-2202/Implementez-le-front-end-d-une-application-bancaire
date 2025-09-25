@@ -186,6 +186,33 @@ body {
   font-size: 1rem;
 }
 
+
+.main-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.sign-out-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  font-weight: bold;
+}
+
+
 .input-remember {
   display: flex;
 }
