@@ -40,8 +40,8 @@ function SignInForm() {
         sessionStorage.setItem("token", data.token);
       }
 
-      // Redirection vers la page Transactions
-      navigate("/transactions");
+      // Redirection vers la page User
+      navigate("/user");
     } catch (error) {
       console.error("Erreur API :", error);
       setErrorMessage(error.message); // Affiche le message d'erreur

@@ -1,7 +1,13 @@
-import React from "react";
+import HeaderProfile from "../Components/HeaderProfile";
+import Account from "../Components/Account";
 
 function User() {
-  return <h1>Page Utilisateur</h1>;
+  return (
+    <main className="main bg-dark">
+      <HeaderProfile />
+      <Account />
+    </main>
+  );
 }
 
 export default User;
