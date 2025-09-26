@@ -2,7 +2,7 @@ import TransactionRow from "./TransactionRow";
 
 function TransactionTable({ transactions }) {
   return (
-    <table style={{ width: "100%", borderCollapse: "collapse" }}>
+    <table className="transaction-table">
       <thead>
         <tr>
           <th>Date</th>

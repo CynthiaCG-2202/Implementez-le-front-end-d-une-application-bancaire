@@ -335,8 +335,6 @@ body {
   color: #2c3e50;
 }
 
-/* En-tête du compte */
-
 .account-page {
   padding: 45px;
 }
@@ -368,4 +366,29 @@ body {
 .account-amount-page-description {
   margin: 0px;
   font-weight: 300;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: separate; 
+  border-spacing: 0 10px;
+}
+
+.transaction-row {
+  background-color: #61b37b;
+  color: white;
+}
+
+.transaction-row td {
+  padding: 12px;
+}
+
+.transaction-details {
+  background-color: #61b37b;
+  color: white;
+  text-align: left;
+}
+
+.transaction-details td {
+  padding: 10px;
 }
