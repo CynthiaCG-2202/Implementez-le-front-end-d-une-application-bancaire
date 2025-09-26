@@ -4,7 +4,6 @@ function Account({ id, title, amount, description }) {
   const navigate = useNavigate();
 
   const handleViewTransactions = () => {
-    // id provient maintenant des props
     navigate(`/transactions/${id}`);
   };
 

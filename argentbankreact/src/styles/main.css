@@ -20,8 +20,8 @@ body {
 }
 
 .main {
-  flex: 1; 
-  display: flex; 
+  flex: 1;
+  display: flex;
   flex-direction: column;
 }
 
@@ -31,16 +31,19 @@ body {
 
 .sr-only {
   border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  /* 1 */
   -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important; /* 2 */
+  clip-path: inset(50%) !important;
+  /* 2 */
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important; /* 3 */
+  white-space: nowrap !important;
+  /* 3 */
 }
 
 .main-nav {
@@ -324,6 +327,7 @@ body {
     width: 200px;
   }
 }
+
 .transactions {
   max-width: 800px;
   margin: 2rem auto;
@@ -332,64 +336,36 @@ body {
 }
 
 /* En-tête du compte */
+
+.account-page {
+  padding: 45px;
+}
+
 .account-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 2rem;
+  background-color: #3d3d3d;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .account-header h2 {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0px;
+  font-weight: 300;
 }
 
-.account-amount {
-  font-size: 2rem;
-  font-weight: bold;
+.account-amount-page {
+  font-size: 3.5rem;
+  margin: 0px;
+  font-weight: 300;
 }
 
-.account-amount-description {
-  color: #7f8c8d;
-}
-
-/* Tableau principal */
-.transactions-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-}
-
-.transactions-table th,
-.transactions-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Ligne de transaction cliquable */
-.transaction-row {
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.transaction-row:hover {
-  background-color: #f0f9f0;
-}
-
-/* Détails dépliés */
-.transaction-details td {
-  background-color: #f9f9f9;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #34495e;
-}
-
-.transaction-details p {
-  margin: 0.3rem 0;
-}
-
-/* Petits ✏️ pour indiquer l’édition */
-.transaction-details p::after {
-  content: "";
-  margin-left: 0.5rem;
-  color: #27ae60;
+.account-amount-page-description {
+  margin: 0px;
+  font-weight: 300;
 }

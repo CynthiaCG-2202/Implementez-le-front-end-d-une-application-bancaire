@@ -9,7 +9,7 @@ function User() {
       {accountsData.map(acc => (
         <Account
           key={acc.id}
-          id={acc.id}                // <-- ici on passe l'id
+          id={acc.id}                
           title={acc.title}
           amount={acc.amount}
           description={acc.description}

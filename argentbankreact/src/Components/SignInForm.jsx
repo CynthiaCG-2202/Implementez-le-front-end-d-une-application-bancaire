@@ -17,7 +17,7 @@ function SignInForm() {
     setErrorMessage("");
 
     try {
-      // 1️⃣ Login pour récupérer le token
+      // Login pour récupérer le token
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -32,7 +32,7 @@ function SignInForm() {
       if (rememberMe) localStorage.setItem("token", token);
       else sessionStorage.setItem("token", token);
 
-      // 2️⃣ Récupérer les infos de l’utilisateur
+      // Récupérer les infos de l’utilisateur
       const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });

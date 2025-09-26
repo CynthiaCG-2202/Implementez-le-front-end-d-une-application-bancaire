@@ -1,20 +1,35 @@
 import { useParams } from "react-router-dom";
-import accountsData from "../Data/dataAccount"; // ou depuis Redux
+import accountsData from "../Data/dataAccount";
+import TransactionTable from "../Components/TransactionTable";
+
+const transactionTemplate = {
+  date: "27-02-20",
+  description: "Golden Sun Bakery",
+  amount: 8.0,
+  balance: 298.0,
+  details: {
+    type: "Electronic",
+    category: "food",
+    note: "lorem ipsum"
+  }
+};
+
+const transactions = Array(5)
+  .fill(transactionTemplate)
+  .map((tx, index) => ({ ...tx, id: index + 1 }));
 
 function Transactions() {
   const { id } = useParams();
   const account = accountsData.find(acc => acc.id === id);
 
-  if (!account) return <p>Compte non trouvé</p>;
-
   return (
-    <main>
+    <main className="account-page">
       <div className="account-header">
         <h2>{account.title}</h2>
-        <p className="account-amount">{account.amount}</p>
-        <p className="account-amount-description">{account.description}</p>
+        <p className="account-amount-page">{account.amount}</p>
+        <p className="account-amount-page-description">{account.description}</p>
       </div>
-      {/* Liste des transactions collapsibles ici */}
+      <TransactionTable transactions={transactions} />
     </main>
   );
 }
