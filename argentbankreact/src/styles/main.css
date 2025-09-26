@@ -324,3 +324,72 @@ body {
     width: 200px;
   }
 }
+.transactions {
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: Arial, sans-serif;
+  color: #2c3e50;
+}
+
+/* En-tête du compte */
+.account-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.account-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.account-amount {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.account-amount-description {
+  color: #7f8c8d;
+}
+
+/* Tableau principal */
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Ligne de transaction cliquable */
+.transaction-row {
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.transaction-row:hover {
+  background-color: #f0f9f0;
+}
+
+/* Détails dépliés */
+.transaction-details td {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #34495e;
+}
+
+.transaction-details p {
+  margin: 0.3rem 0;
+}
+
+/* Petits ✏️ pour indiquer l’édition */
+.transaction-details p::after {
+  content: "";
+  margin-left: 0.5rem;
+  color: #27ae60;
+}

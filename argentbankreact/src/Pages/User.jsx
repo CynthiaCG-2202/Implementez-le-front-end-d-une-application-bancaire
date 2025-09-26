@@ -1,21 +1,24 @@
-import { useSelector } from "react-redux";
 import HeaderProfile from "../Components/HeaderProfile";
+import accountsData from "../Data/dataAccount";
 import Account from "../Components/Account";
 
 function User() {
-  const { user } = useSelector((state) => state.auth);
-  const accounts = user?.accounts || [];
-
   return (
     <main className="main bg-dark">
-      <HeaderProfile />
-      {accounts.length > 0 ? (
-        accounts.map((account, index) => <Account key={index} {...account} />)
-      ) : (
-        <Account/>
-      )}
+      <HeaderProfile/>
+      {accountsData.map(acc => (
+        <Account
+          key={acc.id}
+          id={acc.id}                // <-- ici on passe l'id
+          title={acc.title}
+          amount={acc.amount}
+          description={acc.description}
+        />
+      ))}
     </main>
   );
 }
 
 export default User;
+
+
