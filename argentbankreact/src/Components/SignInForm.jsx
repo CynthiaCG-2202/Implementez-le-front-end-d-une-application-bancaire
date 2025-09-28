@@ -17,7 +17,6 @@ function SignInForm() {
     setErrorMessage("");
 
     try {
-      // Login pour récupérer le token
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -32,7 +31,7 @@ function SignInForm() {
       if (rememberMe) localStorage.setItem("token", token);
       else sessionStorage.setItem("token", token);
 
-      // Récupérer les infos de l’utilisateur
+      // Récupérer les infos utilisateur
       const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -43,7 +42,7 @@ function SignInForm() {
       // Mettre à jour Redux
       dispatch(loginSuccess({ token, user: profileData.body }));
 
-      navigate("/user");
+      navigate("/user"); // redirige vers page user
     } catch (error) {
       console.error("Erreur API :", error);
       setErrorMessage(error.message);
@@ -53,41 +52,21 @@ function SignInForm() {
   return (
     <form onSubmit={handleSubmit} className="sign-in-form">
       <div className="input-wrapper">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <label>Email</label>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <label>Password</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
 
       <div className="input-remember">
-        <input
-          type="checkbox"
-          id="remember-me"
-          checked={rememberMe}
-          onChange={(e) => setRememberMe(e.target.checked)}
-        />
-        <label htmlFor="remember-me">Remember me</label>
+        <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
+        <label>Remember me</label>
       </div>
 
-      <button type="submit" className="sign-in-button">
-        Sign In
-      </button>
-
+      <button className="sign-in-button">Sign In</button>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </form>
   );

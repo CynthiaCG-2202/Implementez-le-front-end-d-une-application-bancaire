@@ -335,60 +335,61 @@ body {
   color: #2c3e50;
 }
 
-.account-page {
-  padding: 45px;
-}
-
-.account-header {
-  text-align: left;
-  margin-bottom: 2rem;
-  background-color: #3d3d3d;
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
+.edit-form-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.account-header h2 {
-  font-size: 1.5rem;
-  margin: 0px;
-  font-weight: 300;
-}
-
-.account-amount-page {
-  font-size: 3.5rem;
-  margin: 0px;
-  font-weight: 300;
-}
-
-.account-amount-page-description {
-  margin: 0px;
-  font-weight: 300;
-}
-
-.transaction-table {
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  border-collapse: separate; 
-  border-spacing: 0 10px;
 }
 
-.transaction-row {
-  background-color: #61b37b;
-  color: white;
-}
-
-.transaction-row td {
-  padding: 12px;
-}
-
-.transaction-details {
-  background-color: #61b37b;
-  color: white;
+.form-row label {
+  flex: 1;
+  color: rgb(80, 80, 80);
   text-align: left;
+
 }
 
-.transaction-details td {
-  padding: 10px;
+.form-row input {
+  flex: 2;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  width: 165px;
+  background-color: #00bc77;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
 }
