@@ -29,20 +29,11 @@ function SignInForm() {
 
       // Stocker le token
       if (rememberMe) localStorage.setItem("token", token);
-      else sessionStorage.setItem("token", token);
-
-      // Récupérer les infos utilisateur
-      const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!profileResponse.ok) throw new Error("Impossible de récupérer le profil");
-      const profileData = await profileResponse.json();
 
       // Mettre à jour Redux
-      dispatch(loginSuccess({ token, user: profileData.body }));
+      dispatch(loginSuccess({ token }));
 
-      navigate("/user"); // redirige vers page user
+      navigate("/user"); // .then 
     } catch (error) {
       console.error("Erreur API :", error);
       setErrorMessage(error.message);

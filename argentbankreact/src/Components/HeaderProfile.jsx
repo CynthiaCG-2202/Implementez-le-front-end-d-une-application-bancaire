@@ -3,28 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { usersuccess, logout } from "../Redux/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import EditProfileForm from "./EditProfile";
+import useGetProfile from "../Hooks/useGetProfile";
 
 function HeaderProfile() {
-  const { user } = useSelector((state) => state.auth);
+  const { user, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {getProfile} = useGetProfile();
 
   const [isEditing, setIsEditing] = useState(false);
 
-  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-
-  // Récupérer le profil à l'ouverture
   useEffect(() => {
-    if (!token) return;
-    fetch("http://localhost:3001/api/v1/user/profile", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(async (res) => {
-        if (!res.ok) throw new Error("Impossible de récupérer le profil");
-        const data = await res.json();
-        dispatch(usersuccess({ user: data.body }));
-      })
-      .catch((err) => console.error(err));
+    if (!token){
+      navigate("/sign-in")
+    } else {getProfile()}
   }, [dispatch, token]);
 
   const handleSave = (updatedUser) => {

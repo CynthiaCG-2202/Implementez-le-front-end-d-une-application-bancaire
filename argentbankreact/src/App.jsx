@@ -3,9 +3,20 @@ import Layout from'./Layout/Layout';
 import Home from './Pages/Home';
 import SignIn from './Pages/SignIn';
 import User from './Pages/User';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "./Redux/features/authSlice";
 
 
 function App() {
+  const dispatch=useDispatch()
+  useEffect(()=>{ 
+    const token = localStorage.getItem("token");
+    if (token){
+      dispatch(loginSuccess({token}))
+    }
+  },[])
+
   return (
     <BrowserRouter>
       <Routes>
