@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { usersuccess, logout } from "../Redux/features/authSlice";
+import { usersuccess } from "../Redux/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import EditProfileForm from "./EditProfile";
 import useGetProfile from "../Hooks/useGetProfile";
@@ -9,15 +9,17 @@ function HeaderProfile() {
   const { user, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {getProfile} = useGetProfile();
+  const { getProfile } = useGetProfile();
 
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    if (!token){
-      navigate("/sign-in")
-    } else {getProfile()}
-  }, [dispatch, token]);
+    if (!token) {
+      navigate("/sign-in");
+    } else {
+      getProfile();
+    }
+  }, [token]);
 
   const handleSave = (updatedUser) => {
     dispatch(usersuccess({ user: updatedUser }));
@@ -26,26 +28,25 @@ function HeaderProfile() {
 
   return (
     <div className="header">
-      <h1>
-        Welcome Back
-        <br />
-        {user?.username ? user.username : user?.firstName || "Pseudo"} !
-      </h1>
+      {!isEditing && (
+        <h1>
+          Welcome Back <br />
+          {user?.userName || `${user?.firstName} ${user?.lastName}` || "Pseudo"}!
+        </h1>
+      )}
 
-      <div className="header-buttons">
-        {!isEditing && (
-          <button className="edit-button" onClick={() => setIsEditing(true)}>
-            Edit Profile
-          </button>
-        )}
-      </div>
+      {!isEditing && (
+        <button className="edit-button" onClick={() => setIsEditing(true)}>
+          Edit Profile
+        </button>
+      )}
 
       {isEditing && (
-        <EditProfileForm 
-          user={user} 
-          token={token} 
-          onSave={handleSave} 
-          onCancel={() => setIsEditing(false)} 
+        <EditProfileForm
+          user={user}
+          token={token}
+          onSave={handleSave}
+          onCancel={() => setIsEditing(false)}
         />
       )}
     </div>

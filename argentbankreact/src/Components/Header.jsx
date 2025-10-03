@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { loginSuccess, usersuccess, logout } from "../Redux/features/authSlice";
+import { logout, usersuccess } from "../Redux/features/authSlice";
 import logo from "../assets/Images/argentBankLogo.png";
 import '../styles/main.css'
 
 function Header() {
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const { isLoggedIn, user, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (!token) return;
-
     fetch("http://localhost:3001/api/v1/user/profile", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -26,7 +24,7 @@ function Header() {
         console.error(err);
         dispatch(logout());
       });
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -46,7 +44,7 @@ function Header() {
         {isLoggedIn && user ? (
           <div className="user-info">
             <i className="fa fa-user-circle"></i>
-            <span className="user-name">{user.firstName}</span>
+            <span className="user-name">{user.userName || user.firstName}</span>
             <a className="main-nav-item" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i> Sign Out
             </a>
